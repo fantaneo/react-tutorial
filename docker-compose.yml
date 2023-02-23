@@ -1,4 +1,4 @@
-version: '3'
+version: "3"
 services:
   #  db:
   #    image: mysql:5.7
@@ -12,10 +12,18 @@ services:
 
   web:
     build: .
-    #    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     volumes:
-      - .:/myapp
+      - mutagen-volume:/myapp
+    tty: true
     ports:
       - "3000:3000"
-        #    depends_on:
-        #      - db
+
+volumes:
+  mutagen-volume:
+
+x-mutagen:
+  sync:
+    mutagen-volume:
+      mode: "two-way-resolved"
+      alpha: "./"
+      beta: "volume://mutagen-volume"

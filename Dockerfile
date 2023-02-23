@@ -14,6 +14,7 @@ RUN mkdir /myapp
 WORKDIR /myapp
 COPY ./Gemfile /myapp/Gemfile
 # COPY ../Gemfile.lock /myapp/Gemfile.lock
+RUN gem install solargraph
 RUN bundle install
 COPY ./ /myapp
 
@@ -31,4 +32,8 @@ EXPOSE 3000
 # 
 # Rails サーバ起動
 # CMD ["rails", "server", "-b", "0.0.0.0"]
-CMD ["./bin/dev"]
+# CMD ["./bin/dev"]
+CMD ["/bin/bash"]
+
+# hogehoge
+# hoge
